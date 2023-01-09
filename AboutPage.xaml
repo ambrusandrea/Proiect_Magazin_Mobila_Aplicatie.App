@@ -5,7 +5,7 @@
              Title="AboutPage">
     <VerticalStackLayout Spacing="10" Margin="10">
         <HorizontalStackLayout Spacing="10">
-            <Image Source="img1.png"
+            <Image Source="img2.png"
  SemanticProperties.Description="My Favorites"
 HeightRequest="64" />
             <Label FontSize="22" FontAttributes="Bold" Text="My Favorites" VerticalOptions="End" />
