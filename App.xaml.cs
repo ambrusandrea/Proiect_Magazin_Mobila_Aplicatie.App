@@ -15,7 +15,7 @@ public partial class App : Application
             {
                 database = new
                FavoriteListDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.
-               LocalApplicationData), "FavoriteList.db3"));
+               LocalApplicationData), "ShopList.db3"));
             }
             return database;
         }

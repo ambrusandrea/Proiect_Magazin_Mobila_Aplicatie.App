@@ -9,16 +9,32 @@ public partial class ListPage : ContentPage
 	}
     async void OnSaveButtonClicked(object sender, EventArgs e)
     {
-        var slist = (FavoriteList)BindingContext;
-        slist.Date = DateTime.UtcNow;
-        await App.Database.SaveShopListAsync(slist);
+        var flist = (FavoriteList)BindingContext;
+        flist.Date = DateTime.UtcNow;
+        await App.Database.SaveFavoriteListAsync(flist);
         await Navigation.PopAsync();
     }
     async void OnDeleteButtonClicked(object sender, EventArgs e)
     {
-        var slist = (FavoriteList)BindingContext;
-        await App.Database.DeleteShopListAsync(slist);
+        var flist = (FavoriteList)BindingContext;
+        await App.Database.DeleteShopListAsync(flist);
         await Navigation.PopAsync();
+    }
+    async void OnChooseButtonClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ProductPage((FavoriteList)
+       this.BindingContext)
+        {
+            BindingContext = new Product()
+        });
+
+    }
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        var favoritel = (FavoriteList)BindingContext;
+
+        listView.ItemsSource = await App.Database.GetListProductsAsync(favoritel.ID);
     }
 
 }
