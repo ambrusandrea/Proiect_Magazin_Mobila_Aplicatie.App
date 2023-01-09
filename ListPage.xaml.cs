@@ -20,5 +20,13 @@ public partial class ListPage : ContentPage
         await App.Database.DeleteShopListAsync(slist);
         await Navigation.PopAsync();
     }
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        var shopl = (FavoriteList)BindingContext;
+
+        listView.ItemsSource = await App.Database.GetListProductsAsync(shopl.ID);
+    }
+
 
 }
